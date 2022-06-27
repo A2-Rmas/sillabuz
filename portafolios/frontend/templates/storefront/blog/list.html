@@ -1,0 +1,43 @@
+{% extends '../base.html'%}
+{% load static %}
+{% block title %}Blogs{% endblock %}
+
+{% block content %}
+<div style="margin: 10px;">
+    <button type="button" class="btn btn-info px-3 center">
+        <i class="bi bi-file-earmark-plus" aria-hidden="true"></i>
+    </button>
+</div>
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">#Id</th>
+            <th scope="col">Autor</th>
+            <th scope="col">Titulo</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Accion</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for object in object_list %}
+            <tr>
+              <td>{{ object.id}}</td>
+              <td>{{ object.author}}</td>
+              <td>{{ object.title}}</td>
+              <td>{{ object.description|truncatechars:"10" }}</td>
+              <td> 
+                <a href="{% url 'storefront:blog:detail' pk=object.pk %}" class="btn btn-info px-3 center">
+                    <i class="bi bi-info-square" aria-hidden="true"></i>
+                </a>
+                <a href="" class="btn btn-warning px-3">
+                    <i class="bi bi-pencil" aria-hidden="true"></i>
+                </a>
+                <a href="" class="btn btn-danger px-3">
+                    <i class="bi bi-trash" aria-hidden="true"></i>
+                </a>
+              </td>
+            </tr>
+           {%endfor %}
+        </tbody>
+      </table>
+{% endblock  %}
